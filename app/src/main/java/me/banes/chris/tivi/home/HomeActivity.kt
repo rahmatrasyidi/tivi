@@ -33,6 +33,7 @@ import me.banes.chris.tivi.home.discover.DiscoverFragment
 import me.banes.chris.tivi.home.library.LibraryFragment
 import me.banes.chris.tivi.home.popular.PopularShowsFragment
 import me.banes.chris.tivi.home.trending.TrendingShowsFragment
+import me.banes.chris.tivi.home.watched.MyShowsFragment
 import me.banes.chris.tivi.home.watched.WatchedShowsFragment
 import me.banes.chris.tivi.trakt.TraktConstants
 import net.openid.appauth.AuthorizationException
@@ -92,6 +93,7 @@ class HomeActivity : TiviActivity() {
         navigatorViewModel.showPopularCall.observeK(this, this::showPopular)
         navigatorViewModel.showTrendingCall.observeK(this, this::showTrending)
         navigatorViewModel.showWatchedCall.observeK(this, this::showWatched)
+        navigatorViewModel.showMyShowsCall.observeK(this, this::showMyShows)
         navigatorViewModel.upClickedCall.observeK(this) { this.onUpClicked() }
     }
 
@@ -139,6 +141,10 @@ class HomeActivity : TiviActivity() {
 
     private fun showWatched(sharedElements: SharedElementHelper?) {
         showStackFragment(WatchedShowsFragment(), sharedElements)
+    }
+
+    private fun showMyShows(sharedElements: SharedElementHelper?) {
+        showStackFragment(MyShowsFragment(), sharedElements)
     }
 
     private fun showStackFragment(fragment: Fragment, sharedElements: SharedElementHelper? = null) {
